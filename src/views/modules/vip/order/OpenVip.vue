@@ -89,7 +89,7 @@
         param: {},
         formLayout: 'horizontal',
         form: this.$form.createForm(this),
-        areaOptions:[]
+        areaOptions:[],
         result: ''
       }
     },
