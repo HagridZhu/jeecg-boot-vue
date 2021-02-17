@@ -20,7 +20,7 @@
             <a-row :gutter="10">
               <a-col :md="8" :sm="12">
                 <a-form-item label="名称">
-                  <a-input style="width: 120px;" placeholder="请输入名称" v-model="queryParam.itemText"></a-input>
+                  <j-input style="width: 120px;" placeholder="请输入名称" v-model="queryParam.itemText"></j-input>
                 </a-form-item>
               </a-col>
               <a-col :md="9" :sm="24">
@@ -94,17 +94,25 @@
             title: '名称',
             align: "center",
             dataIndex: 'itemText',
+            width: 150,
           },
           {
             title: '数据值',
             align: "center",
             dataIndex: 'itemValue',
+            min_width: 100,
+          },
+          {
+            title: '描述',
+            align: "center",
+            dataIndex: 'description',
           },
           {
             title: '操作',
             dataIndex: 'action',
             align: "center",
             scopedSlots: {customRender: 'action'},
+            width: 90, 
           }
         ],
         queryParam: {

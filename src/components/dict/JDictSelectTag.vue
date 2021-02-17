@@ -7,7 +7,18 @@
     <a-radio-button v-for="(item, key) in dictOptions" :key="key" :value="item.value">{{ item.text }}</a-radio-button>
   </a-radio-group>
 
-  <a-select v-else-if="tagType=='select'" :getPopupContainer = "getPopupContainer" :placeholder="placeholder" :disabled="disabled" :value="getValueSting" @change="handleInput">
+  <!-- 2021-02-17 zhuzhihai 下拉框可搜索 -->
+  <a-select v-else-if="tagType=='search'" show-search :getPopupContainer = "getPopupContainer" :placeholder="placeholder" :disabled="disabled" :value="getValueSting" @change="handleInput"
+                  option-filter-prop="children" :filter-option="filterOption">
+      <!-- <a-select-option :value="''">请选择search2</a-select-option> -->
+      <a-select-option v-for="(item, key) in dictOptions" :key="key" :value="item.value">
+        <span style="display: inline-block;width: 100%" :title=" item.text || item.label ">
+          {{ item.text || item.label }}
+        </span>
+      </a-select-option>
+    </a-select>
+
+  <a-select v-else-if="tagType=='select'" :getPopupContainer = "getPopupContainer" :placeholder="placeholder" :disabled="disabled"  :value="getValueSting" @change="handleInput">
     <a-select-option :value="undefined">请选择</a-select-option>
     <a-select-option v-for="(item, key) in dictOptions" :key="key" :value="item.value">
       <span style="display: inline-block;width: 100%" :title=" item.text || item.label ">
@@ -101,6 +112,12 @@
       },
       getCurrentDictOptions(){
         return this.dictOptions
+      },
+      // 2021-02-17 zhuzhihai 搜索title的值
+      filterOption(input, option) {
+        return (
+          option.componentOptions.children[0].data.attrs.title.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        );
       }
     }
   }

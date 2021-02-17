@@ -121,6 +121,12 @@ service.interceptors.request.use(config => {
 
 // response interceptor
 service.interceptors.response.use((response) => {
+    // 500错误，抛出提示
+    let data = response.data
+    if (data && data.code == 500) {
+      message.error(data.message, 3)
+    }
+
     return response.data
   }, err)
 
