@@ -51,6 +51,24 @@
           </a-form-item>
         </a-col>
       </a-row>
+	    <a-row>
+        <a-col :md="24" :sm="24">
+          <a-form-item label="会员分类" :labelCol="{ span: 7 }" :wrapperCol="{ span: 15 }">
+            <a-select v-decorator="['vipType',{rules: [{ required: true, message: '选择开通的会员分类' }]}]" 
+                       placeholder="选择开通的会员分类">
+              <a-select-option value="CRM">CRM</a-select-option>
+              <a-select-option value="NET">互联网</a-select-option>
+            </a-select>
+          </a-form-item>
+        </a-col>
+      </a-row>
+	    <a-row>
+        <a-col :md="24" :sm="24">
+          <a-form-item label="userId" :labelCol="{ span: 7 }" :wrapperCol="{ span: 15 }">
+            <a-input v-decorator="['userId', {}]"/>
+          </a-form-item>
+        </a-col>
+      </a-row>
       <!-- <a-row>
         <a-col :md="24" :sm="24">
           <a-form-item label="Gender" :labelCol="{ span: 7 }" :wrapperCol="{ span: 15 }">
@@ -90,7 +108,8 @@
         formLayout: 'horizontal',
         form: this.$form.createForm(this),
         areaOptions:[],
-        result: ''
+        result: '',
+		    vipType: 'CRM'
       }
     },
     methods: {

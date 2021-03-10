@@ -124,7 +124,7 @@ service.interceptors.response.use((response) => {
     // 500错误，抛出提示
     let data = response.data
     if (data && data.code == 500) {
-      message.error(data.message, 3)
+      notification.error({ message: '系统提示', description: data.message, duration: 3})
     }
 
     return response.data
